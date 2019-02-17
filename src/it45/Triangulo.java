@@ -27,7 +27,7 @@ public class Triangulo {
      public void posicionTriangulo(){
          
      }
-     
+     //Poncho
     public void visualizaTriangulo(Graphics2D g){
         g.setColor (Color.GRAY); 
         int [] vx2 = {30, 10, 10};
