@@ -29,7 +29,7 @@ public class Triangulo {
      }
      
     public void visualizaTriangulo(Graphics2D g){
-        g.setColor (Color.GRAY);
+        g.setColor (Color.GRAY); 
         int [] vx2 = {30, 10, 10};
         int [] vy2 = {70, 100, 50};
         g.fillPolygon (vx2, vy2, 3);
