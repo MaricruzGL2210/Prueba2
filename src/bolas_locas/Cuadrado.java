@@ -65,7 +65,7 @@ public class Cuadrado {
         if(posicionY + movimientoY > juego.getHeight() - tamano_pelota){
             movimientoY = -1;
              
-             this.juego.pelotass.add(new Pelota(juego));
+             this.juego.pelotas.add(new Pelota(juego));
         }
        
         

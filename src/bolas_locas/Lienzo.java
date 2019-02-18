@@ -14,11 +14,13 @@ import javax.swing.JFrame;
 public class Lienzo extends JFrame{
     public Lienzo (Juego juego) {
         JFrame frame = new JFrame();
+        frame.setTitle("Bolas Locas");
         frame.add(juego);
         frame.setSize(400,500);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
+        frame.setResizable(false);
     }
 }

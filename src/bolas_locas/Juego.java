@@ -7,7 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -18,43 +19,84 @@ public class Juego extends JPanel{
     private Lienzo lienzo;
    // private Pelota pelota;
     
-    List<Pelota> pelotass = new ArrayList<>();
+    List<Pelota> pelotas = new ArrayList<>();
     private Raqueta raqueta;
     private Triangulo triangulo;
     private Porteria porteria;
     private Cuadrado cuadrado;
     
-    
-    public Juego(){
-        lienzo = new Lienzo(this);
-       this.pelotass.add(new Pelota(this));
+    public Juego(int nivel) {
+        if (nivel == 1) {
+            System.out.println("NIvel 1");
+       this.pelotas.add(new Pelota(this));
        raqueta = new Raqueta(this);
+       triangulo = new Triangulo(this);
+        porteria = new Porteria(this);
+        cuadrado = new Cuadrado(this);
+        
+            addKeyListener(new KeyListener() {
+
+                @Override
+                public void keyTyped(KeyEvent e) {
+                  
+                }
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        try {
+                        Thread.sleep(1000);
+                        iniciar(Juego.this);
+                        System.out.println("Holas");
+                        }catch(Exception ex){
+                            
+                        }
+                    }
+                    raqueta.keyPressed(e);
+                    System.out.println("JJ");
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                   raqueta.keyReleased(e);
+                }
+            });
+            setFocusable(true);
+        }
+    }
+   /* public Juego(){
+        lienzo = new Lienzo(this);
+       this.pelotas.add(new Pelota(this));
+       raqueta = new Raqueta(this);
+       triangulo = new Triangulo(this);
+        porteria = new Porteria(this);
+        cuadrado = new Cuadrado(this);
+        
         addKeyListener(new KeyListener() {
 
-           @Override
-           public void keyTyped(KeyEvent e) {
-           }
+            @Override
+            public void keyTyped(KeyEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
 
-           @Override
-           public void keyPressed(KeyEvent e) {
-               raqueta.keyProssed(e);
-           }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                raqueta.keyPressed(e);
+            }
 
-           @Override
-           public void keyReleased(KeyEvent e) {
+            @Override
+            public void keyReleased(KeyEvent e) {
                raqueta.keyReleased(e);
-           }
+            }
        });
         setFocusable(true); 
         
-        triangulo = new Triangulo(this);
-        porteria = new Porteria(this);
-        cuadrado = new Cuadrado(this);
-    }
+        
+    }*/
     
     public void moverPelota(){
-        for(int i = 0; i < pelotass.size();i++){
-            pelotass.get(i).mover();
+        for(int i = 0; i < pelotas.size();i++){
+            pelotas.get(i).mover();
         }
             
     }
@@ -94,8 +136,21 @@ public class Juego extends JPanel{
            
            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
            //pelota.vizualizar(g2d); 
-           for(Pelota p :pelotass){
+           for(Pelota p :pelotas){
                p.vizualizar(g2d);
            }
+    }
+    
+    public void iniciar(Juego juego){
+       /* while (true) {
+                    try {
+                        juego.moverPelota();
+                        juego.moverRaqueta();
+                        juego.repaint();
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }*/
     }
 }

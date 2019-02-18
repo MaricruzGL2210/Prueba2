@@ -5,7 +5,6 @@
  */
 package bolas_locas;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -22,9 +21,9 @@ public class Raqueta {
     
     private int movimientox;
     
-    private static final int Y = 330;
-    private static final int WITH = 60;
-    private static final int HEIGTH = 10;
+    private static final int Y = 450;
+    private static final int WITH = 80;
+    private static final int HEIGTH = 15;
     
 
     
@@ -49,13 +48,13 @@ public class Raqueta {
         movimientox = 0;
     }
     
-    public void keyProssed(KeyEvent e){
+    public void keyPressed(KeyEvent e){
         //verifica el codigo de la tecla
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
-            movimientox = -1;
+            movimientox = -2;
         }
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            movimientox = 1;
+            movimientox = 2;
         }
         e.setKeyCode(posicionx);
     }
