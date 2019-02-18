@@ -80,7 +80,7 @@ public class Pelota {
              
              this.juego.pelotas.add(new Pelota(juego));
 
-
+ 
         }
         if (verificarChoqueRaqueta()) {
             movimientoY += -3;
