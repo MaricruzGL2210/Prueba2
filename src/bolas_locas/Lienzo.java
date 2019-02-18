@@ -11,20 +11,14 @@ import javax.swing.JFrame;
  *
  * @author Alfonso HA
  */
-public class P {
-    public static void main(String[] args) throws InterruptedException {
-        JFrame frame = new JFrame("Pelota rebotando");
-        Juego juego = new Juego();
+public class Lienzo extends JFrame{
+    public Lienzo (Juego juego) {
+        JFrame frame = new JFrame();
         frame.add(juego);
-        frame.setSize(300, 400);
+        frame.setSize(400,500);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        while (true) {
-            juego.moverPelota();
-            juego.moverRaqueta();
-            juego.repaint();
-            Thread.sleep(10);
-        }
+        frame.setLayout(null);
     }
 }

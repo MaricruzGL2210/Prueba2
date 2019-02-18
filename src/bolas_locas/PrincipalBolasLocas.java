@@ -5,12 +5,25 @@
  */
 package bolas_locas;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Alfonso HA
  */
 public class PrincipalBolasLocas {
-    public static void main(String[] args) {
-        new BolasLocasInicio().setVisible(true);
+    public static void main(String[] args) throws InterruptedException {
+        Juego juego = new Juego();
+        while (true) {
+                    try {
+                        juego.moverPelota();
+                        juego.moverRaqueta();
+                        juego.repaint();
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(BolasLocasInicio.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
     }
 }

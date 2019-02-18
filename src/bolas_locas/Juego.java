@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  * @author Maricruz GL
  */
 public class Juego extends JPanel{
-    
+    private Lienzo lienzo;
    // private Pelota pelota;
     
     List<Pelota> pelotass = new ArrayList<>();
@@ -26,6 +26,7 @@ public class Juego extends JPanel{
     
     
     public Juego(){
+        lienzo = new Lienzo(this);
        this.pelotass.add(new Pelota(this));
        raqueta = new Raqueta(this);
         addKeyListener(new KeyListener() {
@@ -96,28 +97,5 @@ public class Juego extends JPanel{
            for(Pelota p :pelotass){
                p.vizualizar(g2d);
            }
-          
     }
-    
-    public static void main(String[] args) throws InterruptedException{
-        JFrame frame = new JFrame("Pelota En Movimiento");
-        
-        Juego juego = new Juego();
-        
-        frame.add(juego);
-        frame.setSize(400,500);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        while(true){
-            juego.moverPelota();
-            juego.moverRaqueta();
-            juego.moverCuadrado();
-            juego.moverCuadrado();
-            juego.repaint();
-            Thread.sleep(10);
-        }
-    }
-
-   
 }
