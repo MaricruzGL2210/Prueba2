@@ -53,7 +53,6 @@ public class Juego extends JPanel{
                         }
                     }
                     raqueta.keyPressed(e);
-                    System.out.println("JJ");
                 }
 
                 @Override
