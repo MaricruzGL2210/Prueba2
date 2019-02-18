@@ -70,13 +70,13 @@ public class Pelota {
         
         if(posicionY + movimientoY < 0 ){
             movimientoY = 1;
-            // this.juego.pelotass.add(new Pelota(juego));
+             this.juego.pelotas.add(new Pelota(juego));
         }
         //se va a la derecha
         if(posicionY + movimientoY > juego.getHeight() - tamano_pelota){
             movimientoY = -1;
              
-             this.juego.pelotass.add(new Pelota(juego));
+             this.juego.pelotas.add(new Pelota(juego));
         }
         if(verificarChoqueRaqueta()){
             movimientoY += -3;
