@@ -1,4 +1,4 @@
-package it45;
+package bolas_locas;
 
 
 import java.awt.Color;
