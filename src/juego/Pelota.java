@@ -1,6 +1,7 @@
-package bolas_locas;
+package juego;
 
 
+import bolas_locas.*;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;

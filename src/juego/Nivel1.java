@@ -1,5 +1,6 @@
-package bolas_locas;
+package juego;
 
+import bolas_locas.*;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -20,7 +21,7 @@ import juego_prueba.PanelLoco;
  *
  * @author Maricruz GL
  */
-public class Juego extends JPanel{
+public class Nivel1 extends JPanel{
     private Lienzo lienzo;
    // private Pelota pelota;
     
@@ -31,7 +32,7 @@ public class Juego extends JPanel{
     private Cuadrado cuadrado;
     JPanel p;
     
-    public Juego(int nivel) {
+    public Nivel1(int nivel) {
         p = new JPanel();
         
         if (nivel == 1) {
@@ -54,7 +55,7 @@ public class Juego extends JPanel{
                     if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                         try {
                         Thread.sleep(1000);
-                        iniciar(Juego.this);
+                        iniciar(Nivel1.this);
                         System.out.println("Holas");
                         }catch(Exception ex){
                             
@@ -133,7 +134,7 @@ public class Juego extends JPanel{
     }
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        Juego juego = new Juego(1);
+        Nivel1 juego = new Nivel1(1);
         frame.add(juego);
         frame.setVisible(true);
         frame.setSize(400,500);
@@ -147,7 +148,7 @@ public class Juego extends JPanel{
                         Thread.sleep(10);
                         c++;
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Nivel1.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     if (c > 30) {
                         b = false;
@@ -160,7 +161,7 @@ public class Juego extends JPanel{
         if (s == JOptionPane.YES_OPTION) {
             
             JFrame frame2= new JFrame(); 
-            Juego juego1 = new Juego(1);
+            Nivel1 juego1 = new Nivel1(1);
             frame2.setSize(400,500);
             frame2.setVisible(true);
             //frame2.remove(juego);
@@ -173,7 +174,7 @@ public class Juego extends JPanel{
                         Thread.sleep(10);
                         c++;
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Nivel1.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     if (c > 1000) {
                         b = false;
@@ -198,7 +199,7 @@ public class Juego extends JPanel{
            }
     }
     
-    public void iniciar(Juego juego){
+    public void iniciar(Nivel1 juego){
        /* while (true) {
                     try {
                         juego.moverPelota();
