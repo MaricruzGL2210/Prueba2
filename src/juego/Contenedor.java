@@ -50,6 +50,8 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
         btnNivel1 = new javax.swing.JButton();
         btnNivel2 = new javax.swing.JButton();
         btnNivel3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        nombreJugador2 = new javax.swing.JLabel();
         panelJuego = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,6 +79,10 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        jLabel1.setText("Nombre:");
+
+        nombreJugador2.setText("jLabel2");
+
         javax.swing.GroupLayout panelJugadorLayout = new javax.swing.GroupLayout(panelJugador);
         panelJugador.setLayout(panelJugadorLayout);
         panelJugadorLayout.setHorizontalGroup(
@@ -84,16 +90,26 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
             .addGroup(panelJugadorLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(btnNivel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(btnNivel2)
                 .addGap(88, 88, 88)
                 .addComponent(btnNivel3)
                 .addGap(56, 56, 56))
+            .addGroup(panelJugadorLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nombreJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelJugadorLayout.setVerticalGroup(
             panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJugadorLayout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreJugador2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNivel1)
                     .addComponent(btnNivel2)
@@ -216,6 +232,8 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
     private javax.swing.JButton btnNivel1;
     private javax.swing.JButton btnNivel2;
     private javax.swing.JButton btnNivel3;
+    private javax.swing.JLabel jLabel1;
+    public static javax.swing.JLabel nombreJugador2;
     private javax.swing.JPanel panelJuego;
     private javax.swing.JPanel panelJugador;
     // End of variables declaration//GEN-END:variables
