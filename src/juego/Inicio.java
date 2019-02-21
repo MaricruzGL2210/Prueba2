@@ -1,18 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package juego;
 
 import javax.swing.JFrame;
 
 /**
  *
- * @author vectormx
+ * La clase Inicio
+ * Clase que se utiliza para crear la pantalla principal de inicio
+ * @author Ahernandez / Mgonzalez
+ * 
  */
 public class Inicio extends javax.swing.JFrame{
 
+    //Instancia de JFrame 
      JFrame frame;
      
      
@@ -22,6 +21,7 @@ public class Inicio extends javax.swing.JFrame{
     public Inicio() {
         initComponents();
         this.setSize(300, 250);
+        this.setTitle("Inicio Bolas_Locas");
         this.setLocationRelativeTo(null);
     }
 
@@ -36,11 +36,13 @@ public class Inicio extends javax.swing.JFrame{
 
         jPanel1 = new javax.swing.JPanel();
         btnJugar = new javax.swing.JButton();
-        lblNombre = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         btnJugar.setText("JUGAR");
         btnJugar.addActionListener(new java.awt.event.ActionListener() {
@@ -49,7 +51,14 @@ public class Inicio extends javax.swing.JFrame{
             }
         });
 
-        jLabel1.setText("Bienvenido");
+        nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("      BIENVENIDO");
+        jLabel1.setToolTipText("");
 
         jLabel2.setText("Ingresa tu nombre: ");
 
@@ -60,31 +69,30 @@ public class Inicio extends javax.swing.JFrame{
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(btnJugar))
+                        .addGap(56, 56, 56)
+                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
+                        .addComponent(btnJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jLabel2)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                        .addGap(88, 88, 88)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel2)
-                .addGap(34, 34, 34)
-                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
+                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnJugar)
-                .addGap(66, 66, 66))
+                .addGap(107, 107, 107))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,8 +123,16 @@ public class Inicio extends javax.swing.JFrame{
        container.setNivel(1);
        dispose();
        container.setVisible(true);
-        
+      
+       //lleva el nombre que se introduce en el input a la otra ventana
+       Contenedor.nombreJugador2.setText(nombre.getText());
+      
+       
     }//GEN-LAST:event_btnJugarActionPerformed
+
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+      
+    }//GEN-LAST:event_nombreActionPerformed
  
     /**
      * @param args the command line arguments
@@ -128,7 +144,7 @@ public class Inicio extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField lblNombre;
+    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
  
        
