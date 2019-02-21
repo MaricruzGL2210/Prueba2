@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package juego_prueba;
+package juego;
 
 /**
  *
@@ -11,6 +11,6 @@ package juego_prueba;
  */
 public class Principal {
     public static void main(String[] args) {
-        new Inicio().setVisible(true);
+        new Inicio().setVisible(true); 
     }
-}
+}  

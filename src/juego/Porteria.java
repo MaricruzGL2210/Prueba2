@@ -5,9 +5,8 @@
  */
 package juego;
 
-import bolas_locas.*;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 /**
  *
@@ -15,44 +14,31 @@ import java.awt.Graphics2D;
  */
 public class Porteria {
 
-    private Juego juego;
+    private Nivel1 juego;
     
-    private int posicionxP;
+    public static final int POSICIONXP = 160;
+    public static final int POSICIONYP = 3;
     
-    private int posicionyP;
+    public static final int POSICIONXP2 = 250;
+    public static final int POSICIONYP2 = 3;
     
-     private int posicionxP2;
+    public static final int POSICIONXP3 = 165;
+    public static final int POSICIONYP3 = 3;
     
-    private int posicionyP2;
-    
-    private int posicionxP3;
-    
-    private int posicionyP3;
-    
-    public Porteria(Juego juego){
+    public Porteria(Nivel1 juego){
         this.juego = juego;
-        
-        this.posicionxP = 150;
-        this.posicionyP = 8;
-        
-        this.posicionxP2 = 240;
-        this.posicionyP2 = 8;
-
-        this.posicionxP3 = 155;
-        this.posicionyP3 = 8;
-        
     }
     
     public void visualizarPorteria(Graphics2D g){
-        g.fill3DRect(posicionxP, posicionyP, 5, 30, true);
-        
-        g.fill3DRect(posicionxP2, posicionyP2, 5, 30, true);
-        
-        g.fill3DRect(posicionxP3, posicionyP3, 85, 2, true);
+        g.fill3DRect(POSICIONXP, POSICIONYP, 8, 40, true);
+        g.fill3DRect(POSICIONXP2, POSICIONYP2, 8, 40, true);
+        g.fill3DRect(POSICIONXP3, POSICIONYP3, 85, 5, true);
     }
     
-     public Porteria limitesPorteria(Graphics2D g){
-        return new Porteria(juego);
-    }
-    
+     public Rectangle obtenerLimites(){
+         return new Rectangle(POSICIONXP3, POSICIONYP3, 85, 5);
+    } 
+    public int obtenerAlturaPorteria(){
+       return POSICIONYP3;
+   }
 }

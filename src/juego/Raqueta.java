@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package juego;
-
-import bolas_locas.*;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -14,23 +12,29 @@ import java.awt.event.KeyEvent;
  *
  * @author Maricruz GL
  */
-public class Raqueta {
+public class Raqueta extends NivelCast{
     
-    private Juego juego ;
+    private static final int ALTO = 429;
+    private static final int LARGO = 433; 
+    
+    private Object juego;
     
     private int posicionx;
     
     private int movimientox;
     
-    private static final int Y = 450;
-    private static final int WITH = 80;
+    private static final int Y = 405;
+    private static final int WITH = 90;
     private static final int HEIGTH = 15;
+    Nivel1 nivel1;
+    Nivel2 nivel2;
+    Nivel3 nivel3;
     
 
     
-    public Raqueta(Juego juego){
-        this.juego = juego;
-        
+    public Raqueta(Object juego, int nivel){
+        inicializador(juego, nivel);
+        validaNivel(nivel);
         this.movimientox = 0;
         this.posicionx = 0;                
         
@@ -38,11 +42,11 @@ public class Raqueta {
     
     
     public void mover(){
-        if(posicionx + movimientox > 0 && posicionx + movimientox < juego.getWidth()-WITH ){
+        if(posicionx + movimientox > 0 && posicionx + movimientox < LARGO - WITH ){
             posicionx = posicionx +movimientox;
         }
         
-    }
+    } 
     
     public void keyReleased(KeyEvent e){
         //
@@ -57,6 +61,7 @@ public class Raqueta {
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
             movimientox = 2;
         }
+        
         e.setKeyCode(posicionx);
     }
      
@@ -73,6 +78,32 @@ public class Raqueta {
    public int obtenerAlturaRaqueta(){
        return Y - HEIGTH;
    }
+
+    @Override
+    public void inicializador(Object juego, int nivel) {
+        if (nivel == 1) {
+            this.juego = (Nivel1)juego;
+        }
+        if (nivel == 2) {
+            this.juego = (Nivel2)juego;
+        }
+        if (nivel == 3) {
+           this.juego = (Nivel3)juego;
+        }
+    }
+
+    @Override
+    void validaNivel(int nivel) {
+        if (nivel == 1) {
+            nivel1 = (Nivel1) juego;
+        }
+        if (nivel == 2) {
+            nivel2 = (Nivel2) juego;
+        }
+        if (nivel == 3) {
+            nivel3 = (Nivel3) juego;
+        }
+    }
   
     
     

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bolas_locas;
+package juego;
 //Hola
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -17,10 +17,10 @@ import java.awt.event.MouseEvent;
  */
 public class Triangulo {
     
-     private Juego juego;
+     //private Juego juego;
      
-     public Triangulo(Juego juego){
-         this.juego = juego;
+     public Triangulo(){
+       //  this.juego = juego;
         
      }
    
