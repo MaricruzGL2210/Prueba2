@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package juego;
 
 import java.awt.Graphics2D;
@@ -10,21 +5,36 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author vectormx
+ * La clase Bloque
+ * Extiende de la clase abstracta NivelCast
+ * Sirve para dibujar los bloques 
+ * 
+ * @author Ahernandez / Mgonzalez
  */
 public class Bloque extends NivelCast{
+    
+    //Constantes se utilizan para propiedes de bloque
     private static final int ALTO = 30;
     private static final int ANCHO = 70;
+    private static final int LARGO = 395; 
+    
+    //Variables de movimiento 
     private int movimientoX1;
+    private int movimientoX2;
+    
+    //Variables para posicion 
     private int posicionY1;
     private int posicionY2;
     private int posicionX1;
-    private int movimientoX2;
     private int posicionX2;
-    private static final int LARGO = 395; 
+    
+    //Objeto Juego 
     Object juego;
     
+    //constructor con parametros
     public Bloque(Object juego, int nivel){
+        
+        //inicializacion de variables 
         inicializador(juego, nivel);
         this.movimientoX1 = 1;
         this.movimientoX2 = 1;
@@ -33,6 +43,8 @@ public class Bloque extends NivelCast{
         this.posicionY1 = 180;
         this.posicionY2 = 250;
     }
+    
+    //metodo que tiene como objetivo mover 
      public void mover(){
         if(posicionX1 + movimientoX1 < 0 ){
             movimientoX1 = 2;
@@ -54,20 +66,32 @@ public class Bloque extends NivelCast{
         posicionX2 += movimientoX2;
     } 
      
+     //metodo que obtiene la altura del bloque
      public int obtenerAltura(){
        return ALTO;
    }
+     
+     //metodo que obtiene los limites del bloque 1
      public Rectangle obtenerLimiteBloque1(){
+         //retorna las propiedades dedl bloque
          return new Rectangle(posicionX1, posicionY2, ANCHO, ALTO);
     }
+     
+     //metodo que obtiene los limites del bloque 2
      public Rectangle obtenerLimiteBloque2(){
+         //propiedades del bloque 2
          return new Rectangle(posicionX2, posicionY2, ANCHO, ALTO);
     }
+     
+     //metodo que realiza la visualizacion de los objetos a través de la libreria Graphics2D
      public void visualizarBloque(Graphics2D g2d){
+         //pinta un rectangulo con las propiedades que le pasamos
         g2d.fillRect(posicionX1, posicionY1, ANCHO, ALTO);
         g2d.fillRect(posicionX2, posicionY2, ANCHO, ALTO);
     }
 
+     
+     //metodo abstracto 
     @Override
     void inicializador(Object juego, int nivel) {
         
