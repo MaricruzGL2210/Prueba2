@@ -196,25 +196,41 @@ public class Pelota extends NivelCast{
              if (nivel != 2) {
             movimientoY = 1;
              } else {
-                 
+                 nivel2.bolasFuera ++;
+                 nivel2.getEstatus().setPuntaje(nivel2.getEstatus().getPuntaje() + 10);
+                 if (nivel2.bolasFuera == 10) {
+                     nivel2.getEstatus().visualizaNivel3();
+                 }
              }
              
         }
         //se va a la derecha
         if(posicionY + movimientoY > ALTO - tamano_pelota){
+            if (nivel != 2 && nivel != 3){
             movimientoY = -1;
+            } else {
+               movimientoY = -1; 
+               nivel2.getEstatus().setVidas(nivel2.getEstatus().getVidas() - 1);
+                 if (nivel2.getEstatus().getVidas() == 0) {
+                     nivel2.getEstatus().pierde();
+                 }
+            }
             }
         if(verificarChoqueRaqueta()){
             movimientoY += -3;
             posicionY = getRaquetaAux().obtenerAlturaRaqueta()-tamano_pelota;
           
         }
-//        System.out.println("ALtura Por -->" + (n1.porteria.obtenerAlturaPorteria()));
         
         if (nivel == 1){
             if (verificarChoquePorteria()) {
             movimientoY = 1;
-                System.out.println("Gol");
+             this.nivel1.getEstatus().puntaje = 10;
+             this.nivel1.getEstatus().repaint();
+             this.nivel1.setGoles(this.nivel1.getGoles() + 1);
+             if (this.nivel1.getGoles()==3) {
+                 nivel2();
+             }
         }
             if (verificarChoquePorteriaP1()) {
                 movimientoY = 1;
@@ -267,6 +283,11 @@ public class Pelota extends NivelCast{
             if (verificarChoqueBoss()) {
                     posicionY += 30;
                     movimientoY = 30;
+                    nivel3.boss.vidas--;
+                    nivel3.getEstatus().setPuntaje(nivel3.getEstatus().getPuntaje()+10);
+                    if (nivel3.boss.vidas == 0) {
+                        nivel3.getEstatus().finalizar(); 
+                    }
                 }
         }
         posicionX += movimientoX;
@@ -307,4 +328,7 @@ public class Pelota extends NivelCast{
         }
     }
     
+    public void nivel2() {
+        this.nivel1.getEstatus().visualizaNivel2();
+    }
 }

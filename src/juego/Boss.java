@@ -34,7 +34,7 @@ public class Boss extends NivelCast implements Runnable{
         validaNivel(nivel);
         posicionX = 0;
         movimientoX = 1;
-        vidas = 3;
+        vidas = 10;
     }
     public void visualizarBoss(Graphics2D g2d) {
         g2d.fillRoundRect(posicionX, ALTO, ANCHO, 40, 30, 20);
@@ -54,8 +54,6 @@ public class Boss extends NivelCast implements Runnable{
         }
         if(posicionX + movimientoX > LARGO - 25){
             movimientoX = -1;
-            //this.nivel3.cuadrados.add(new Cuadrado(nivel3, 3));
-            //this.juego.pelotass.add(new Pelota(juego));
         }
         posicionX += movimientoX;
         posicionX += movimientoX;

@@ -101,8 +101,10 @@ public class Cuadrado extends NivelCast{
          
         if(verificarChoqueRaqueta()){
             posicionY = 500;
-            //posicionY = getRaquetaAux().obtenerAlturaRaqueta()-20;
-          this.nivel3.boss.vidas --;
+            nivel3.getEstatus().setVidas(nivel3.getEstatus().getVidas() - 1);
+                 if (nivel3.getEstatus().getVidas() == 0) {
+                     nivel3.getEstatus().pierde();
+                 }
         }
     }
     

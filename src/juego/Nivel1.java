@@ -34,7 +34,9 @@ public class Nivel1 extends JPanel {
     //Variable de tipo porteria
     public Porteria porteria;
 
+    private Contenedor estatus;
     
+    private int goles;
     
     //Constructor de la clase
     public Nivel1() {
@@ -45,6 +47,7 @@ public class Nivel1 extends JPanel {
         
         this.pelota.setRaquetaAux(raqueta);
         
+        this.setGoles(0);
         //Recibe todos los eventos del teclado, es deir, si se pulsa una tecla este nos indica cual fue
         addKeyListener(new KeyListener() {
             @Override
@@ -106,4 +109,21 @@ public class Nivel1 extends JPanel {
         pelota.vizualizar(g2d);
 
     }
+
+    public Contenedor getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(Contenedor estatus) {
+        this.estatus = estatus;
+    }
+
+    public int getGoles() {
+        return goles;
+    }
+
+    public void setGoles(int goles) {
+        this.goles = goles;
+    }
+    
 }

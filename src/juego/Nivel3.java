@@ -28,6 +28,8 @@ public class Nivel3 extends JPanel implements Runnable{
     Boolean estatusBala;
     Boolean isLanzada;  
     Cuadrado cuadrado;
+    
+    private Contenedor estatus;
   
     public Nivel3() {
         nivel3 = this;
@@ -144,4 +146,14 @@ public class Nivel3 extends JPanel implements Runnable{
             this.isLanzada = false;
         }
   } 
+
+    public Contenedor getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(Contenedor estatus) {
+        this.estatus = estatus;
+    }
+  
+  
 }

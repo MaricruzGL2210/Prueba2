@@ -110,17 +110,9 @@ public class Inicio extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
-       /* frame = new JFrame();
-        juego = new Juego(1);
-        frame.add(juego);
-        frame.setVisible(true);
-        frame.setSize(400,500);
-        this.dispose();
-                hilo = new Thread(this);
-                hilo.start();*/
-                
        Contenedor container = new Contenedor();
        container.setNivel(1);
+       container.setName(nombre.getText());
        dispose();
        container.setVisible(true);
       

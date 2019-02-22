@@ -8,6 +8,7 @@ package juego;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,9 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
     JInternalFrame frame2;  
     JInternalFrame frame3; 
     
+    int puntaje;
+    int vidas; 
+    
     /**
      * Creates new form Contenedor
      */
@@ -33,9 +37,15 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
         this.setLocationRelativeTo(null);
         this.setSize(450, 600);
         this.setResizable(false);
-        btnNivel1.setEnabled(true);
-        btnNivel2.setEnabled(true);
-        btnNivel3.setEnabled(true);
+        btnNivel1.setVisible(false);
+        btnNivel2.setVisible(false);
+        btnNivel3.setVisible(false);
+        setPuntaje(0);
+        setVidas(10);
+        lblN.setVisible(false);
+        lblV.setVisible(false);
+        lblP.setVisible(false);
+        
     }
 
     /**
@@ -53,6 +63,13 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
         btnNivel3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         nombreJugador2 = new javax.swing.JLabel();
+        btnInicar = new javax.swing.JButton();
+        lblN = new javax.swing.JLabel();
+        lblP = new javax.swing.JLabel();
+        lblV = new javax.swing.JLabel();
+        lblNivel = new javax.swing.JLabel();
+        lblVidas = new javax.swing.JLabel();
+        lblPuntaje = new javax.swing.JLabel();
         panelJuego = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,24 +101,61 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
 
         nombreJugador2.setText("jLabel2");
 
+        btnInicar.setText("INICIAR JUEGO");
+        btnInicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicarActionPerformed(evt);
+            }
+        });
+
+        lblN.setText("Nivel:");
+
+        lblP.setText("Puntaje: ");
+
+        lblV.setText("Vidas:");
+
         javax.swing.GroupLayout panelJugadorLayout = new javax.swing.GroupLayout(panelJugador);
         panelJugador.setLayout(panelJugadorLayout);
         panelJugadorLayout.setHorizontalGroup(
             panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelJugadorLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(btnNivel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                .addComponent(btnNivel2)
-                .addGap(88, 88, 88)
-                .addComponent(btnNivel3)
-                .addGap(56, 56, 56))
-            .addGroup(panelJugadorLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombreJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nombreJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelJugadorLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelJugadorLayout.createSequentialGroup()
+                        .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelJugadorLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lblN))
+                            .addGroup(panelJugadorLayout.createSequentialGroup()
+                                .addComponent(btnNivel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                                .addComponent(btnNivel2)))
+                        .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelJugadorLayout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(btnNivel3)
+                                .addGap(56, 56, 56))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJugadorLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lblNivel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblV)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblVidas)
+                                .addGap(33, 33, 33))))
+                    .addGroup(panelJugadorLayout.createSequentialGroup()
+                        .addComponent(btnInicar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblPuntaje)
+                        .addGap(158, 158, 158))))
         );
         panelJugadorLayout.setVerticalGroup(
             panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,8 +163,18 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
                 .addContainerGap()
                 .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreJugador2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                    .addComponent(nombreJugador2)
+                    .addComponent(lblN)
+                    .addComponent(lblV)
+                    .addComponent(lblNivel)
+                    .addComponent(lblVidas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnInicar)
+                    .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblP)
+                        .addComponent(lblPuntaje)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNivel1)
                     .addComponent(btnNivel2)
@@ -128,7 +192,7 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
         );
         panelJuegoLayout.setVerticalGroup(
             panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 344, Short.MAX_VALUE)
+            .addGap(0, 341, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,9 +214,34 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
     }// </editor-fold>//GEN-END:initComponents
  
     private void btnNivel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivel1ActionPerformed
+       
+    }//GEN-LAST:event_btnNivel1ActionPerformed
+
+    private void btnNivel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivel2ActionPerformed
+        //this.panelJuego.remove(frame1);
+        
+    }//GEN-LAST:event_btnNivel2ActionPerformed
+
+    private void btnNivel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivel3ActionPerformed
+        
+    }//GEN-LAST:event_btnNivel3ActionPerformed
+
+    private void btnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicarActionPerformed
+        int bandera = JOptionPane.showConfirmDialog(null, "Mete la pelota 3 veces en la porteria para subir de nivel. Tines 10 vidas.",
+                "Nivel 1", JOptionPane.YES_OPTION);
+        if (bandera == JOptionPane.YES_OPTION) {
+            lblNivel.setText(String.valueOf(getNivel()));
+            lblVidas.setText(String.valueOf(getPuntaje()));
+            lblPuntaje.setText(String.valueOf(getVidas()));
+            
+            lblN.setVisible(true);
+            lblV.setVisible(true);
+            lblP.setVisible(true);
+        
         frame1 = new JInternalFrame();
         juego1 = new Nivel1();
         frame1.add(juego1); 
+        juego1.setEstatus(this);
         frame1.setSize(445,460); 
         frame1.setVisible(true); 
         frame1.setResizable(false);   
@@ -161,79 +250,21 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
         this.panelJuego.repaint();   
         hilo = new Thread(this); 
         hilo.start();
-    }//GEN-LAST:event_btnNivel1ActionPerformed
-
-    private void btnNivel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivel2ActionPerformed
-        //this.panelJuego.remove(frame1);
-        frame1 = null;
-        frame2 = new JInternalFrame();
-        juego2 = new Nivel2();
-        frame2.add(juego2); 
-        frame2.setSize(445,460); 
-        frame2.setVisible(true); 
-        frame2.setResizable(false);   
-        this.panelJuego.add(frame2);    
-        this.btnNivel2.setEnabled(false);
-        this.panelJuego.repaint();   
-        hilo = new Thread(this); 
-        hilo.start();
-    }//GEN-LAST:event_btnNivel2ActionPerformed
-
-    private void btnNivel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivel3ActionPerformed
-        frame2 = null;
-        frame3 = new JInternalFrame();
-        juego3 = new Nivel3();
-        frame3.add(juego3); 
-        frame3.setSize(445,460); 
-        frame3.setVisible(true); 
-        frame3.setResizable(false);   
-        this.panelJuego.add(frame3);    
-        this.btnNivel3.setEnabled(false);
-        this.panelJuego.repaint();   
-        hilo = new Thread(this); 
-        hilo.start();
-    }//GEN-LAST:event_btnNivel3ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */ 
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Contenedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Contenedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Contenedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Contenedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Contenedor().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_btnInicarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInicar;
     private javax.swing.JButton btnNivel1;
     private javax.swing.JButton btnNivel2;
     private javax.swing.JButton btnNivel3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblN;
+    private javax.swing.JLabel lblNivel;
+    private javax.swing.JLabel lblP;
+    private javax.swing.JLabel lblPuntaje;
+    private javax.swing.JLabel lblV;
+    private javax.swing.JLabel lblVidas;
     public static javax.swing.JLabel nombreJugador2;
     private javax.swing.JPanel panelJuego;
     private javax.swing.JPanel panelJugador;
@@ -305,4 +336,72 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
         this.jugador = jugador;
     }
 
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+    }
+
+    public void visualizaNivel2() {
+        int bandera = JOptionPane.showConfirmDialog(null, "Saca las pelotas por la parte superior. Te quedan " + getVidas(),
+                "Nivel 2", JOptionPane.YES_OPTION);
+        if (bandera == JOptionPane.YES_OPTION) {
+            frame1 = null;
+        frame2 = new JInternalFrame();
+        juego2 = new Nivel2();
+        frame2.add(juego2); 
+        juego2.setEstatus(this);
+        frame2.setSize(445,460); 
+        frame2.setVisible(true); 
+        frame2.setResizable(false);   
+        this.panelJuego.add(frame2);    
+        this.btnNivel2.setEnabled(false);
+        this.panelJuego.repaint();   
+        hilo = new Thread(this); 
+        hilo.start();
+        }
+    }
+    public void visualizaNivel3() {
+        int bandera = JOptionPane.showConfirmDialog(null, "Destruye al Jefe golpeandolo con la pelota. Esquiba sus ataques y no dejes que la pelota se te escape. Presiona la tecla ESPACIO para lazar explosivo cuando este este generado. Te quedan " + getVidas(),
+                "Nivel 3", JOptionPane.YES_OPTION);
+        if (bandera == JOptionPane.YES_OPTION) {
+            frame2 = null;
+        frame3 = new JInternalFrame();
+        juego3 = new Nivel3();
+        frame3.add(juego3); 
+        juego3.setEstatus(this);
+        frame3.setSize(445,460); 
+        frame3.setVisible(true); 
+        frame3.setResizable(false);   
+        this.panelJuego.add(frame3);    
+        this.btnNivel3.setEnabled(false);
+        this.panelJuego.repaint();   
+        hilo = new Thread(this); 
+        hilo.start();
+        }
+    }
+    public void finalizar() {
+        JOptionPane.showMessageDialog(null, "Haz ganado. Tu puntaje es " + getPuntaje(),"Haz Perdido", JOptionPane.INFORMATION_MESSAGE);
+    }
+    public void pierde() {
+        JOptionPane.showMessageDialog(null, "Tu puntaje es " + getPuntaje(), "Haz perdido", JOptionPane.WARNING_MESSAGE);
+        jugarNuevo();
+    }
+    public void jugarNuevo() {
+        int ban =  JOptionPane.showConfirmDialog(null, "¿Volver a jugar?", "Juego dice:", JOptionPane.YES_NO_OPTION);
+        if (ban == JOptionPane.YES_OPTION) {
+            this.dispose();
+            new Inicio().setVisible(true);
+        }
+    }
 }

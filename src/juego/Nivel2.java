@@ -24,8 +24,12 @@ public class Nivel2 extends JPanel implements Runnable{
     Pelota p;
     int contadorLista = 0;
     Thread h = new Thread(this); 
+    int bolasFuera;
+    
+    private Contenedor estatus;
     
     public Nivel2() {  
+        bolasFuera = 0;
         h.start();     
         barras = new Barra(this, 2); 
         raqueta = new Raqueta(this, 2);  
@@ -104,5 +108,14 @@ public class Nivel2 extends JPanel implements Runnable{
                     
                 } 
     }
+
+    public Contenedor getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(Contenedor estatus) {
+        this.estatus = estatus;
+    }
+    
 }
  
