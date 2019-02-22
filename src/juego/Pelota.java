@@ -48,7 +48,7 @@ public class Pelota extends NivelCast{
         movimientoX = 1; 
         movimientoY = 1;
         posicionX = new Random().nextInt(300);
-        posicionY = new Random().nextInt((150 - 100) + 1) + 100;
+        posicionY = new Random().nextInt((100 - 80) + 1) + 100;
         
         r = ran.nextFloat();
         t = ran.nextFloat();
@@ -160,20 +160,20 @@ public class Pelota extends NivelCast{
     public boolean verificarChoqueBloque2S() {
         estado = Boolean.FALSE;
         if (nivel == 2) {
-            estado = nivel2.bloque.obtenerLimiteBloque1I().intersects(obtenerLimitesPelota());
+            estado = nivel2.bloque.obtenerLimiteBloque2S().intersects(obtenerLimitesPelota());
         }
         if (nivel == 3) {
-            estado = nivel3.bloque.obtenerLimiteBloque1I().intersects(obtenerLimitesPelota());
+            estado = nivel3.bloque.obtenerLimiteBloque2S().intersects(obtenerLimitesPelota());
         }
         return estado;
     }
     public boolean verificarChoqueBloque2I() {
         estado = Boolean.FALSE;
         if (nivel == 2) {
-            estado = nivel2.bloque.obtenerLimiteBloque1I().intersects(obtenerLimitesPelota());
+            estado = nivel2.bloque.obtenerLimiteBloque2I().intersects(obtenerLimitesPelota());
         }
         if (nivel == 3) {
-            estado = nivel3.bloque.obtenerLimiteBloque1I().intersects(obtenerLimitesPelota());
+            estado = nivel3.bloque.obtenerLimiteBloque2I().intersects(obtenerLimitesPelota());
         }
         return estado;
     }
@@ -182,9 +182,9 @@ public class Pelota extends NivelCast{
      * Permite mover la pelota y rebotar en las paredes 
      */
     public void mover(){
-        if(posicionX + movimientoX < 0 ){
-            movimientoX = 1;
-            
+        
+        if(posicionX + movimientoX < 0 ){  
+            movimientoX = 1; 
         }
         //se va a la izquierda
         if(posicionX + movimientoX > LARGO - tamano_pelota){
@@ -193,16 +193,17 @@ public class Pelota extends NivelCast{
         } 
         
         if(posicionY + movimientoY < 0 ){
+             if (nivel != 2) {
             movimientoY = 1;
-             //this.juego.pelotas.add(new Pelota(juego));
+             } else {
+                 
+             }
+             
         }
         //se va a la derecha
         if(posicionY + movimientoY > ALTO - tamano_pelota){
             movimientoY = -1;
-          //   this.juego.pelotas.add(new Pelota(juego));
-
- 
-        }
+            }
         if(verificarChoqueRaqueta()){
             movimientoY += -3;
             posicionY = getRaquetaAux().obtenerAlturaRaqueta()-tamano_pelota;
@@ -235,53 +236,38 @@ public class Pelota extends NivelCast{
             if (verificarChoquePorteriaP2D()) { 
                 movimientoX = 1;
             }
-        }/*
+        }
         if (nivel == 2) {
             if (verificarChoqueBarra1()) {
                 movimientoY = 1;
-                posicionY = nivel2.barras.obtenerAltura() - tamano_pelota;
             }
             if (verificarChoqueBarra2()) {
-                movimientoY += 1;
-                posicionY = nivel2.barras.obtenerAltura() - tamano_pelota;
+                movimientoY = 1;
             }
             if (verificarChoqueBarra3()) {
-                movimientoY += 1;
-                posicionY = nivel2.barras.obtenerAltura() - tamano_pelota;
+                movimientoY = 1;
             }
-        }*/
+        }
          if (nivel == 2 || nivel == 3) {   
-             Pelota pAux;
-            if (verificarChoqueBloque1S()) {
-                movimientoY = -2;
-                if (nivel == 2){
-                    pAux = new Pelota(nivel1, 2);
-                    pAux.setRaquetaAux(nivel2.raqueta);
-                    nivel2.pelotas.add(pAux);
-                }
-                
+            if (verificarChoqueBloque1S()) { 
+                movimientoY = -2; 
             }
             if (verificarChoqueBloque1I()) {
                 movimientoY = 1;
-                if (nivel == 2){
-                    pAux = new Pelota(nivel1, 2);
-                    pAux.setRaquetaAux(nivel2.raqueta);
-                    nivel2.pelotas.add(pAux);
-                }
-            }
+            } 
             if (verificarChoqueBloque2S()) {
-                movimientoY = -2;
+                movimientoY = -2; 
             }
             if (verificarChoqueBloque2I()) {
                 movimientoY = 1;
  
             }  
-        }
+         }
         if (nivel == 3) {
-        if (verificarChoqueBoss()) {
-                posicionY += 30;
-                movimientoY = 30;
-            }
+            if (verificarChoqueBoss()) {
+                    posicionY += 30;
+                    movimientoY = 30;
+                }
         }
         posicionX += movimientoX;
         posicionY += movimientoY;

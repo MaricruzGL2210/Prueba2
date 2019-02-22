@@ -19,7 +19,7 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
     Nivel2 juego2;
     Nivel3 juego3;
     Thread hilo; 
-    int nivel = 1; 
+    int nivel = 3; 
     String jugador;
     JInternalFrame frame1; 
     JInternalFrame frame2;  
@@ -259,11 +259,10 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
          if (getNivel() == 2) {
              while (true) {
                     try {
-                        juego2.moverRaqueta(); 
-                        juego2.moverPelota();
-                        juego2.moverBloque(); 
+                        juego2.moverRaqueta();
+                        juego2.moverBloque();  
                         juego2.repaint();
-                        Thread.sleep(10);
+                        Thread.sleep(8);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Nivel1.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -288,7 +287,7 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
                 }
        
          }
-    }
+    } 
 
     public int getNivel() {
         return nivel;

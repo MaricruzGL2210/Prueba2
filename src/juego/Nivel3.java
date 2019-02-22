@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /** 
- *
+ * 
  * @author Maricruz GL 
  */ 
 public class Nivel3 extends JPanel implements Runnable{ 

@@ -15,13 +15,13 @@ public class Barra extends NivelCast{
 
     //Se declara constantes para propiedades de la barra
     private static final int ALTO = 10;
-    private static final int ANCHO = 110;
+    private static final int ANCHO = 100;
     
     //Constantese para la posicion de las barras
     private static final int X_B1 = 0;
-    private static final int X_B2 = 160;
-    private static final int X_B3 = 330;
-    private static final int Y_B = 25;
+    private static final int X_B2 = 170;
+    private static final int X_B3 = 340;
+    private static final int Y_B = 40;
     
     Object juego;
     
