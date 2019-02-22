@@ -93,10 +93,16 @@ public class Cuadrado extends NivelCast{
                 posicionY ++;
             }
             if (acum == 10) {
-                posicionY += 4;
+                posicionY += 5;
             }
         } else {
             posicionY ++;
+        }
+         
+        if(verificarChoqueRaqueta()){
+            posicionY = 500;
+            //posicionY = getRaquetaAux().obtenerAlturaRaqueta()-20;
+          this.nivel3.boss.vidas --;
         }
     }
     
@@ -108,4 +114,12 @@ public class Cuadrado extends NivelCast{
          g.setColor(new Color(ran.nextInt(200), ran.nextInt(200), ran.nextInt(200)));
          g.fillRect(posicionX, posicionY, 20, 20);
         }
+     
+     public Rectangle obtenerLimitesCuadrado(){
+        return new Rectangle(posicionX, posicionY, 20, 20);
+    }
+     public boolean verificarChoqueRaqueta(){
+        return getRaquetaAux().obtenerLimite().intersects(obtenerLimitesCuadrado());
+        
+    }
 }

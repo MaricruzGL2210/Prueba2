@@ -67,20 +67,36 @@ public class Bloque extends NivelCast{
     } 
      
      //metodo que obtiene la altura del bloque
-     public int obtenerAltura(){
+     public int obtenerAlturaI(){
        return ALTO;
    }
+     public int obtenerAlturaS(){
+       return posicionY1 - 40;
+   }
+
+      public int obtenerAlturaB2S(){
+       return posicionY2 - 40;
+   }
+     
      
      //metodo que obtiene los limites del bloque 1
-     public Rectangle obtenerLimiteBloque1(){
+     public Rectangle obtenerLimiteBloque1I(){
          //retorna las propiedades dedl bloque
-         return new Rectangle(posicionX1, posicionY2, ANCHO, ALTO);
+         return new Rectangle(posicionX1, posicionY1, ANCHO, ALTO);
     }
-     
+     public Rectangle obtenerLimiteBloque1S(){
+         //retorna las propiedades dedl bloque
+         return new Rectangle(posicionX1, posicionY1 - 5, ANCHO, ALTO);
+    }
+      
      //metodo que obtiene los limites del bloque 2
-     public Rectangle obtenerLimiteBloque2(){
+     public Rectangle obtenerLimiteBloque2I(){
          //propiedades del bloque 2
          return new Rectangle(posicionX2, posicionY2, ANCHO, ALTO);
+    }
+     public Rectangle obtenerLimiteBloque2S(){
+         //propiedades del bloque 2
+         return new Rectangle(posicionX2, posicionY2 - 5, ANCHO, ALTO);
     }
      
      //metodo que realiza la visualizacion de los objetos a través de la libreria Graphics2D

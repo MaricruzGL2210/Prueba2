@@ -27,11 +27,14 @@ public class Boss extends NivelCast implements Runnable{
 
     Cuadrado cuadrado;
     
+    public int vidas;
+    
     public Boss(Object juego, int nivel) {
         inicializador(juego, nivel);
         validaNivel(nivel);
         posicionX = 0;
         movimientoX = 1;
+        vidas = 3;
     }
     public void visualizarBoss(Graphics2D g2d) {
         g2d.fillRoundRect(posicionX, ALTO, ANCHO, 40, 30, 20);
@@ -57,7 +60,9 @@ public class Boss extends NivelCast implements Runnable{
         posicionX += movimientoX;
         posicionX += movimientoX;
         if (box == 3){
-           this.nivel3.cuadrados.add(new Cuadrado(nivel3, 3));
+            cuadrado = new Cuadrado(nivel3, 3);
+            cuadrado.setRaquetaAux(nivel3.raqueta);
+            this.nivel3.cuadrados.add(cuadrado);
         }
          
     }  

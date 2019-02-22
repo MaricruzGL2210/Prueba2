@@ -21,9 +21,9 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
     Thread hilo; 
     int nivel = 1; 
     String jugador;
-    JInternalFrame frame1;
-    JInternalFrame frame2;
-    JInternalFrame frame3;
+    JInternalFrame frame1; 
+    JInternalFrame frame2;  
+    JInternalFrame frame3; 
     
     /**
      * Creates new form Contenedor
@@ -33,8 +33,9 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
         this.setLocationRelativeTo(null);
         this.setSize(450, 600);
         this.setResizable(false);
-        btnNivel3.setEnabled(false);
-        btnNivel2.setEnabled(false);
+        btnNivel1.setEnabled(true);
+        btnNivel2.setEnabled(true);
+        btnNivel3.setEnabled(true);
     }
 
     /**
@@ -240,13 +241,13 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
 
     @Override
     public void run() {
-        if (getNivel() == 1){
+        if (getNivel() == 1){ 
         while (true) {
                     try {
                         juego1.moverPelota();
                         juego1.moverRaqueta();
                         juego1.repaint();
-                        Thread.sleep(10);
+                        Thread.sleep(5);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Nivel1.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -258,20 +259,20 @@ public class Contenedor extends javax.swing.JFrame implements Runnable{
          if (getNivel() == 2) {
              while (true) {
                     try {
+                        juego2.moverRaqueta(); 
                         juego2.moverPelota();
-                        juego2.moverRaqueta();
-                        juego2.moverBloque();
+                        juego2.moverBloque(); 
                         juego2.repaint();
                         Thread.sleep(10);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Nivel1.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     
-                }
-       
-         }
-         if (getNivel() == 3) {
-             while (true) {
+                } 
+        
+         } 
+         if (getNivel() == 3) { 
+             while (juego3.boss.vidas > 0) {
                     try {
                         juego3.moverPelota();
                         juego3.moverRaqueta();

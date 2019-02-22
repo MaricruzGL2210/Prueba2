@@ -19,7 +19,8 @@ import java.util.logging.Logger;
 public class Especial implements Runnable{
     Nivel3 juego;
     Rectangle raqueta;
-    private int posicionX;
+    int posicionX;
+    int movimientoX;
     private int posicionY;
     private int movimientoY;
     Random ran = new Random();
@@ -27,14 +28,14 @@ public class Especial implements Runnable{
     public Especial(Nivel3 juego) {
         this.juego = juego;
         raqueta = juego.raqueta.obtenerLimite();
-        posicionX = raqueta.getBounds().x + 25;
-        posicionY = raqueta.getBounds().y;
+        posicionX = raqueta.getBounds().x + 25; 
+        movimientoX = 0;
+        posicionY = raqueta.getBounds().y -15;
                 
     }
     public void lanzarEspecial() {
         Thread h = new Thread(this);
         h.start();
-        //juego.cuadrados.clear();
     }
     public void vizualizarEspecial(Graphics2D g){
          g.setColor(new Color(ran.nextInt(200), ran.nextInt(200), ran.nextInt(200)));
@@ -48,16 +49,18 @@ public class Especial implements Runnable{
             try {
             posicionY += -1;
             juego.repaint();
-                Thread.sleep(10);
+            Thread.sleep(10);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Especial.class.getName()).log(Level.SEVERE, null, ex);
             }
             c++;
         }
         try {
-            Thread.sleep(10);
+            Thread.sleep(6);
             juego.cuadrados.clear();
             juego.balas.clear();
+            juego.estatusBala = false;
+            Thread.sleep(300);
         } catch (InterruptedException ex) {
             Logger.getLogger(Especial.class.getName()).log(Level.SEVERE, null, ex);
         }

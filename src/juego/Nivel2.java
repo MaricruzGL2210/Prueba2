@@ -10,54 +10,60 @@ import java.util.List;
 import javax.swing.JPanel;
   
 /** 
- * 
+ *  
  * @author Maricruz GL
  */ 
-public class Nivel2 extends JPanel{
+public class Nivel2 extends JPanel{ 
       
     List<Pelota> pelotas = new ArrayList<>();
     Raqueta raqueta;
     Bloque bloque;
-    Barra barras;
+    Barra barras;  
+    Pelota p;   
     
-    public Nivel2() {
-        Pelota p = new Pelota(this, 2);    
-        bloque = new Bloque(this, 2);
+    public Nivel2() {  
+        p = new Pelota(this, 2);     
         barras = new Barra(this, 2); 
         raqueta = new Raqueta(this, 2);
-           p.setRaquetaAux(raqueta);
-           this.pelotas.add(p); 
-            addKeyListener(new KeyListener() {
+        p.setRaquetaAux(raqueta);
+        this.pelotas.add(p); 
+                 
+        p = new Pelota(this, 2);    
+        p.setRaquetaAux(raqueta); 
+        //this.pelotas.add(p);    
+        bloque = new Bloque(this, 2);
+            addKeyListener(new KeyListener() { 
                 @Override  
                 public void keyTyped(KeyEvent e) {
-                   
-                }
-
+                    
+                } 
+ 
                 @Override 
                 public void keyPressed(KeyEvent e) {
                     raqueta.keyPressed(e);
                 }
-
+     
                 @Override
                 public void keyReleased(KeyEvent e) {
                    raqueta.keyReleased(e);
                 }
             });
-            
+             
             setFocusable(true);
         
     }
-     
-    public void moverPelota(){
-        for (Pelota p : pelotas) { 
-            p.mover();
-        } 
-    } 
+        
+    public void moverPelota(){ 
+              
+        for(int i = 0; i < pelotas.size(); i++) {
+            pelotas.get(i).mover();
+        }  
+    }    
     
     public void moverBloque() {
         bloque.mover(); 
-    }
-    
+    } 
+      
    
      
     public void moverRaqueta(){
@@ -66,12 +72,12 @@ public class Nivel2 extends JPanel{
     
     public Raqueta getRaqueta() {
         return raqueta;
-    }   
+    }    
      
     public void setRaqueta(Raqueta raqueta) {
         this.raqueta = raqueta;
     }
- 
+  
     @Override
     public void paint(Graphics g){
            super.paint(g);

@@ -25,7 +25,7 @@ public class Porteria {
     public static final int POSICIONXP3 = 165;
     public static final int POSICIONYP3 = 3;
     
-    public Porteria(Nivel1 juego){
+    public Porteria(Nivel1 juego){ 
         this.juego = juego;
     }
     
@@ -40,5 +40,31 @@ public class Porteria {
     } 
     public int obtenerAlturaPorteria(){
        return POSICIONYP3;
+   }
+    
+    public Rectangle obtenerLimitesP1(){
+         return new Rectangle(POSICIONXP, POSICIONYP, 8, 40);
+    } 
+    public int obtenerAlturaPorteriaP1(){
+       return POSICIONYP;
+   }
+    public Rectangle obtenerLimitesP2(){
+         return new Rectangle(POSICIONXP2, POSICIONYP2, 8, 40);
+    } 
+    public int obtenerAlturaPorteriaP2(){
+       return POSICIONYP2;
+   }
+    public int obtenerAnchoPorteriaP1D(){
+       return POSICIONXP + 8;
+   }
+    public Rectangle obtenerAnchoPorteriaP1I(){
+       return new Rectangle(POSICIONXP, POSICIONYP, 8, 40);
+   }
+    
+    public int obtenerAnchoPorteriaP2D(){
+       return POSICIONXP2 + 8;
+   }
+    public Rectangle obtenerAnchoPorteriaP2I(){
+       return new Rectangle(POSICIONXP2, POSICIONYP2, 8, 40);
    }
 }

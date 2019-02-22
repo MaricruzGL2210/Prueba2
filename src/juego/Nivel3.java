@@ -7,12 +7,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;  
 import javax.swing.JPanel;
 
 /** 
  *
  * @author Maricruz GL 
- */
+ */ 
 public class Nivel3 extends JPanel implements Runnable{ 
      
     Pelota pelota;
@@ -21,30 +24,38 @@ public class Nivel3 extends JPanel implements Runnable{
     Boss boss;
     List<Cuadrado> cuadrados = new ArrayList<>();
     List<Especial> balas = new ArrayList<>();
+    Nivel3 nivel3;
+    Boolean estatusBala;
+    Boolean isLanzada;  
+    Cuadrado cuadrado;
   
     public Nivel3() {
+        nivel3 = this;
         pelota = new Pelota(this, 3);
         raqueta = new Raqueta(this, 3); 
         pelota.setRaquetaAux(raqueta);
         bloque = new Bloque(this, 3); 
         boss = new Boss(this, 3); 
-        cuadrados.add(new Cuadrado(this, 3)); 
-        balas.add(new Especial(this));
-         
+        cuadrado = new Cuadrado(this, 3);
+        cuadrado.setRaquetaAux(raqueta);
+        cuadrados.add(cuadrado); 
+        estatusBala = false;
+        isLanzada = false;
             addKeyListener(new KeyListener() {
                 @Override
                 public void keyTyped(KeyEvent e) {
-                  
+                     
                 }
 
                 @Override
                 public void keyPressed(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                         moverEspecial(); 
+                        isLanzada = true;   
         } else {
-                    raqueta.keyPressed(e);
-                    }  
-                }  
+            raqueta.keyPressed(e); 
+        }   
+                }      
  
                 @Override
                 public void keyReleased(KeyEvent e) {
@@ -53,16 +64,18 @@ public class Nivel3 extends JPanel implements Runnable{
             });
               
             setFocusable(true);
-        
+            
+            Thread hilo = new Thread(this);
+            hilo.start();
     }
-    
+     
     public void moverPelota(){
         pelota.mover();
     }
-    
+       
     
     public void moverRaqueta(){
-         raqueta.mover();
+         raqueta.mover();  
     }
       
     public Raqueta getRaqueta() {  
@@ -71,7 +84,7 @@ public class Nivel3 extends JPanel implements Runnable{
  
     public void setRaqueta(Raqueta raqueta) {
         this.raqueta = raqueta; 
-    }
+    } 
     public void moverBloque() {  
         bloque.mover();  
     }   
@@ -79,7 +92,7 @@ public class Nivel3 extends JPanel implements Runnable{
     public void moverBoss(){ 
         boss.mover(); 
      }  
-    @Override
+    @Override  
     public void paint(Graphics g){
            super.paint(g);
            Graphics2D g2d = (Graphics2D) g;
@@ -93,7 +106,7 @@ public class Nivel3 extends JPanel implements Runnable{
            }
            for (Especial es : balas) {
                es.vizualizarEspecial(g2d);
-           }
+           }  
            
     }  
 
@@ -106,12 +119,29 @@ public class Nivel3 extends JPanel implements Runnable{
     public void moverEspecial() {
         for (Especial es : balas) {
             es.lanzarEspecial();
-        }
-    }  
-     
+        }  
+    }      
+      
     @Override 
     public void run() {
-        
-    }
-  
+        while(true){  
+        try {
+            Thread.sleep(200);
+            validaBala();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Nivel3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+    } 
+  public void validaBala() throws InterruptedException{
+      Thread.sleep(20); 
+      Random ran = new Random();
+      int timerGenerar = ran.nextInt(35);
+      if (balas.isEmpty() && timerGenerar == 10) {
+            balas.add(new Especial(this));
+            this.repaint();   
+            this.estatusBala = true;
+            this.isLanzada = false;
+        }
+  } 
 }

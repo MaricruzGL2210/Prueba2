@@ -33,7 +33,7 @@ public class Barra extends NivelCast{
     
     //metodo que obtiene las propiedades de la barra
     public int obtenerAltura(){
-       return Y_B + ALTO + 15;
+       return Y_B + ALTO + 20;
    }
     
     //metodos que obtienen los limites de las barras que se integran en el juego
